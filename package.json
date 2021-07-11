@@ -1,0 +1,26 @@
+{
+  "name": "@toescalabs/durable-esm",
+   
+  "version": "0.1.0",
+  "description": "Example repo for itty-durable",
+  "module": "./dist/index.mjs",
+  "scripts": {
+    "deploy": "wrangler publish",
+    "build": "esbuild src/index.js --sourcemap --format=esm --bundle --outfile=dist/index.mjs",
+    "miniflare": "miniflare src/index.js -c ./wrangler.toml -w  -d --cache-persist false -o Counter=Counter",
+    "miniflare:built": "miniflare dist/index.mjs -c ./wrangler.toml -w  -d --cache-persist false -o Counter=Counter",
+    "mf":"node --experimental-vm-modules mf.mjs"
+  },
+  "author": "Kevin Whitley <krwhitley@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.12.15",
+    "miniflare": "^1.2.0",
+    "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "itty-durable": "^0.4.0",
+    "itty-router": "^2.3.6",
+    "itty-router-extras": "^0.4.2"
+  }
+}

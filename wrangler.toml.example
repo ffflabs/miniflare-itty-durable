@@ -1,0 +1,31 @@
+account_id = "{YOUR_CLOUDFLARE_WORKERS_ACCOUNT_ID}"
+zone_id = "{YOUR_CLOUDFLARE_WORKERS_ZONE_ID}"
+api_token = "{CLOUdFLARE_TOKEN_WITH_EDIT_WORKERS_PERMISSION}"
+
+name = "miniflare-itty-durable"
+# type = "javascript" is required to use the `[build]` section
+type = "javascript"
+
+workers_dev = true
+# routes = [
+  # "example.site.com/simple-counter/*",
+  # "example.site.com/simple-counter"
+# ]
+
+
+[durable_objects]
+bindings = [
+  { name = "Counter", class_name = "Counter" }
+]
+
+[build]
+upload_format = "modules"
+command = "yarn build"
+cwd = "."
+watch_dir = "src"
+upload_dir = "dist"
+upload_include = []
+upload_exclude = ["*.map","*.mjs.map"]
+
+[miniflare]
+# upstream = "https://example.site.com/"
